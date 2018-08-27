@@ -1,3 +1,4 @@
+import { AuthService } from "./../shared/auth.service";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -6,7 +7,9 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./feeding-management.component.css"]
 })
 export class FeedingManagementComponent implements OnInit {
-  constructor() {}
+  constructor(private auth: AuthService) {
+    this.auth.checkLogin();
+  }
 
   ngOnInit() {}
 }
