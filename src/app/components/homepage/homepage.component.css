@@ -1,0 +1,33 @@
+
+        .container {
+            border: 2px solid red;
+            position: absolute;
+            height: 98%;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            -webkit-transform: translateX(-50%) translateY(-50%);
+        }
+
+        .button {
+            margin-bottom: 20px;
+            margin-left: 163px;
+            width: 150px;
+            height: 84px
+
+        }
+
+        .btn1 {
+            border: none;
+            background-color: palevioletred;
+        }
+
+        .btn2 {
+            border: none;
+            background-color: royalblue;
+        }
+
+        .btn3 {
+            border: none;
+            background-color: palegoldenrod;
+        }
