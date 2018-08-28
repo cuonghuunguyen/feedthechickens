@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FeedingService } from "../shared/feeding.service";
 import { NgForm } from "@angular/forms";
 import { ToastrService } from "ngx-Toastr";
+import { Feeding } from "../shared/feeding";
 @Component({
   selector: "app-feeding-edit",
   templateUrl: "./feeding-edit.component.html",
@@ -18,28 +19,38 @@ export class FeedingEditComponent implements OnInit {
     this.resetForm();
   }
 
-  onSubmit(feedingForm: NgForm) {
-    if (this.feedingService.selectedFeeding.id === null) {
-      this.feedingService.insertData(this.feedingService.selectedFeeding);
-      this.toast.info("Insert successfully!", "Notification of CuongHandsome");
+  onSubmit() {
+    if (!this.feedingService.selectedFeeding.id) {
+      this.feedingService
+        .insertData(this.feedingService.selectedFeeding)
+        .then(() =>
+          this.toast.info(
+            "Insert successfully!",
+            "Notification of CuongHandsome"
+          )
+        );
     } else {
-      this.feedingService.updateData(this.feedingService.selectedFeeding);
-      this.toast.success(
-        "Update successfully!",
-        "Notification of MyGrandMother"
-      );
+      this.feedingService
+        .updateData(this.feedingService.selectedFeeding)
+        .then(() =>
+          this.toast.success(
+            "Update successfully!",
+            "Notification of MyGrandMother"
+          )
+        );
     }
     this.resetForm();
   }
 
+  handleClickCheckbox() {
+    this.feedingService.selectedFeeding.loop = !this.feedingService
+      .selectedFeeding.loop;
+  }
+
   resetForm(feedingForm?: NgForm) {
-    if (feedingForm != null) {
+    if (feedingForm) {
       feedingForm.reset();
     }
-    this.feedingService.selectedFeeding = {
-      id: null,
-      time: new Date(),
-      duration: 0
-    };
+    this.feedingService.selectedFeeding = Object.assign(new Feeding(), {});
   }
 }
