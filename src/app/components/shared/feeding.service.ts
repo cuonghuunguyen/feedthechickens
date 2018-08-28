@@ -16,7 +16,7 @@ export class FeedingService {
   getData() {
     let tempList: Feeding[];
     this.afs
-      .collection<Feeding>("schedule")
+      .collection<Feeding>("schedule", ref => ref.where("fed", "==", false))
       .snapshotChanges()
       .pipe(
         map(actions => {
@@ -36,7 +36,14 @@ export class FeedingService {
   }
 
   insertData(feeding: Feeding) {
-    return this.afs.collection("schedule").add(Object.assign(feeding, {}));
+    const tempObj = {
+      id: "",
+      time: feeding.time,
+      duration: feeding.duration,
+      fed: feeding.fed,
+      loop: feeding.loop
+    };
+    return this.afs.collection("schedule").add(tempObj);
   }
 
   updateData(feeding: Feeding) {

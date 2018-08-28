@@ -26,11 +26,10 @@ export class FeedingListComponent implements OnInit {
   }
 
   onEdit(feeding: Feeding) {
-    this.feedingService.selectedFeeding = Object.assign({}, feeding);
+    this.feedingService.selectedFeeding = feeding;
   }
 
   onDelete(feeding: Feeding) {
-    // tslint:disable-next-line:no-unused-expression
     if (confirm("Do you want to DELETE this feeding schedule")) {
       this.feedingService
         .deleteData(feeding.id)
