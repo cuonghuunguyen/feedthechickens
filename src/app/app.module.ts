@@ -14,6 +14,7 @@ import { AppComponent } from "./app.component";
 import { environment } from "../environments/environment";
 import { HomepageComponent } from "./components/homepage/homepage.component";
 import { LoginComponent } from "./components/login/login.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 const appRoutes: Routes = [
   {
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
     ToastrModule.forRoot(),

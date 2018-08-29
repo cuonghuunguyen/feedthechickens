@@ -15,9 +15,18 @@
             <label for="">Duration</label>
             <input class="form-control" required type="number" name="teacher" min="0" #teacher="ngModel" [(ngModel)]="feedingService.selectedFeeding.duration">
         </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary col-md-2 col-md-offset-4">Submit</button>
-            <button type="reset" class="btn btn-danger col-md-2 ">Reset</button>
+        <div class="checkbox">
+            <label>
+          <input type="checkbox" value="" [checked]="feedingService.selectedFeeding.loop" (click)="handleClickCheckbox()">
+          Loop everyday
+        </label>
         </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary col-md-2 col-md-offset-4" (click)="onSubmit()">Submit</button>
+            <button type="button" class="btn btn-danger col-md-2 " (click)="resetForm()">Reset</button>
+        </div>
+
+
+
     </form>
 </div>

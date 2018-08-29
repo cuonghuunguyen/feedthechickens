@@ -16,14 +16,13 @@ export class FeedingService {
   getData() {
     let tempList: Feeding[];
     this.afs
-      .collection<Feeding>("schedule")
+      .collection<Feeding>("schedule", ref => ref.where("fed", "==", false))
       .snapshotChanges()
       .pipe(
         map(actions => {
           return actions.map(a => {
             const data = a.payload.doc.data();
             data.id = a.payload.doc.id;
-            data.time = new Date(data.time);
             return data;
           });
         })
@@ -37,11 +36,20 @@ export class FeedingService {
   }
 
   insertData(feeding: Feeding) {
-    return this.afs.collection("schedule").add(feeding);
+    const tempObj = {
+      id: "",
+      time: feeding.time,
+      duration: feeding.duration,
+      fed: feeding.fed,
+      loop: feeding.loop
+    };
+    return this.afs.collection("schedule").add(tempObj);
   }
 
   updateData(feeding: Feeding) {
-    return this.afs.doc("schedule/" + feeding.id).update(feeding);
+    return this.afs
+      .doc("schedule/" + feeding.id)
+      .update(Object.assign(feeding, {}));
   }
 
   deleteData(key: string) {
