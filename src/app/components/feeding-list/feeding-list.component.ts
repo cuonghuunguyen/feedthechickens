@@ -26,7 +26,8 @@ export class FeedingListComponent implements OnInit {
   }
 
   onEdit(feeding: Feeding) {
-    this.feedingService.selectedFeeding = feeding;
+    this.feedingService.selectedFeeding = Object.assign({}, feeding);
+    console.log(this.feedingService.selectedFeeding);
   }
 
   onDelete(feeding: Feeding) {

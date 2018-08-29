@@ -16,7 +16,9 @@ export class FeedingService {
   getData() {
     let tempList: Feeding[];
     this.afs
-      .collection<Feeding>("schedule", ref => ref.where("fed", "==", false))
+      .collection<Feeding>("schedule", ref =>
+        ref.where("fed", "==", false).orderBy("time")
+      )
       .snapshotChanges()
       .pipe(
         map(actions => {

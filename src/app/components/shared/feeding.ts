@@ -12,15 +12,17 @@ export class Feeding {
   fed: boolean;
   constructor() {
     const today = new Date();
+    console.log(today);
+
     const todayString = `${today.getFullYear()}-${padZero(
-      today.getMonth()
-    )}-${padZero(today.getDay())}T${padZero(today.getHours())}:${padZero(
+      today.getMonth() + 1
+    )}-${padZero(today.getDate())}T${padZero(today.getHours())}:${padZero(
       today.getMinutes()
     )}`;
 
     this.id = "";
     this.time = todayString;
-    this.duration = 0;
+    this.duration = 1;
     this.loop = false;
     this.fed = false;
   }

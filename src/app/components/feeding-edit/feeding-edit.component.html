@@ -7,12 +7,12 @@
         </div>
 
         <div class="form-group">
-            <label for="">Feeding time</label>
+            <label for="">Feeding time (mm-dd-yyyy hh:mm PM/AM)</label>
             <input class="form-control" type="datetime-local" required name="name" #name="ngModel" [(ngModel)]="feedingService.selectedFeeding.time">
         </div>
 
         <div class="form-group">
-            <label for="">Duration</label>
+            <label for="">Duration (seconds)</label>
             <input class="form-control" required type="number" name="teacher" min="0" #teacher="ngModel" [(ngModel)]="feedingService.selectedFeeding.duration">
         </div>
         <div class="checkbox">
@@ -22,7 +22,7 @@
         </label>
         </div>
         <div class="form-group">
-            <button type="button" class="btn btn-primary col-md-2 col-md-offset-4" (click)="onSubmit()">Submit</button>
+            <button type="button" class="btn {{feedingService.selectedFeeding.id ? 'btn-primary' : 'btn-success'}} col-md-2 col-md-offset-4" (click)="onSubmit()">{{feedingService.selectedFeeding.id ? "Update" : "Insert"}}</button>
             <button type="button" class="btn btn-danger col-md-2 " (click)="resetForm()">Reset</button>
         </div>
 
