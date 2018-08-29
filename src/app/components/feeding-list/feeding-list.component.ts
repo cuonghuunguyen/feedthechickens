@@ -19,28 +19,22 @@ export class FeedingListComponent implements OnInit {
     private toast: ToastrService
   ) {
     this.feedingService.getData();
-  }
-
-  getReadableDateString(date: string) {
-    return new Date(date).toLocaleString("vi");
+    console.log(this.feedingService.feedingList);
   }
 
   onEdit(feeding: Feeding) {
+    console.log(feeding);
     this.feedingService.selectedFeeding = Object.assign({}, feeding);
   }
 
   onDelete(feeding: Feeding) {
     // tslint:disable-next-line:no-unused-expression
-    if (confirm("Do you want to DELETE this feeding schedule")) {
-      this.feedingService
-        .deleteData(feeding.id)
-        .then(() =>
-          this.toast.error(
-            "Remove feeding schedule successfully",
-            "Notification from MyGrandMother"
-          )
-        );
-    }
+    !confirm("Do you want to DELETE this feeding schedule") ||
+      this.feedingService.deleteData(feeding.id);
+    this.toast.error(
+      "Remove feeding schedule successfully",
+      "Notification from MyGrandMother"
+    );
   }
 
   ngOnInit() {}

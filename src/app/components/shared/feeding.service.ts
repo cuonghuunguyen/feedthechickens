@@ -23,6 +23,7 @@ export class FeedingService {
           return actions.map(a => {
             const data = a.payload.doc.data();
             data.id = a.payload.doc.id;
+            data.time = new Date(data.time);
             return data;
           });
         })
@@ -36,20 +37,11 @@ export class FeedingService {
   }
 
   insertData(feeding: Feeding) {
-    const tempObj = {
-      id: "",
-      duration: feeding.duration,
-      time: feeding.time,
-      fed: feeding.fed
-    };
-
-    return this.afs.collection("schedule").add(tempObj);
+    return this.afs.collection("schedule").add(feeding);
   }
 
   updateData(feeding: Feeding) {
-    return this.afs
-      .doc("schedule/" + feeding.id)
-      .update(Object.assign(feeding, {}));
+    return this.afs.doc("schedule/" + feeding.id).update(feeding);
   }
 
   deleteData(key: string) {

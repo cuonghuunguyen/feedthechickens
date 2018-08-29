@@ -4,21 +4,13 @@
             <tr class="success">
                 <th scope="col" class="text-center">Time</th>
                 <th scope="col" class="text-center">Duration</th>
-                <th scope="col" class="text-center">Loop</th>
                 <th scope="col" class="text-center">Action</th>
             </tr>
         </thead>
         <tbody *ngFor="let feeding of feedingService.feedingList">
             <tr>
-                <th scope=" row " class="text-center ">{{getReadableDateString(feeding.time)}}</th>
+                <th scope=" row " class="text-center ">{{feeding.time.toDateString()}}</th>
                 <td>{{feeding.duration}}</td>
-                <td>
-                    <div class="checkbox">
-                        <label>
-                    <input type="checkbox" value="" [checked]="feeding.loop" onclick="return false;">
-                  </label>
-                    </div>
-                </td>
                 <td class="text-center ">
 
                     <button type="button " class="btn btn-success " (click)="onEdit(feeding) ">
