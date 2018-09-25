@@ -1,3 +1,11 @@
-.content {
-    width: 100%;
+.feeding-content {
+    color: aliceblue;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.jumbotron {
+    color: #92278f !important;
+    font-weight: bold;
+    background: #e6e14f;
 }

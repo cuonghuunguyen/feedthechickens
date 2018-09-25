@@ -18,3 +18,14 @@
         transform: rotate(360deg);
     }
 }
+
+.btn-delete {
+    margin-left: 10px;
+}
+
+@media only screen and (max-width: 480px) {
+    .btn-delete {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+}
